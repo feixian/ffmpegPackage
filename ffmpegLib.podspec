@@ -21,22 +21,24 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/hualaiTech/ffmpegLib'
+  s.homepage         = 'https://github.com/feixian/ffmpegPackage'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'hualaiTech' => 'zhangyifei@hualaikeji.com' }
-  s.source           = { :git => 'https://github.com/hualaiTech/ffmpegLib.git', :tag => s.version.to_s }
+  s.source           = { :git => 'git@github.com:feixian/ffmpegPackage.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'ffmpegLib/Classes/**/*'
+  s.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/**/*.{h}'
+  s.libraries = 'bz2', 'c++', 'z', 'iconv'
+  #s.vendored_libraries =  'hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/ffmpeg/lib/*.{a}','hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/ffmpeg/x264/lib/*.{a}','hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/mp4v2/libmp4v2/lib/*.{a}','hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/TUTK/*.{a}','hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/AudioCodec/faac/*.{a}'
   
   # s.resource_bundles = {
   #   'ffmpegLib' => ['ffmpegLib/Assets/*.png']
   # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.vendored_libraries =  'ffmpegLib/Classes/FFmpeg-iOS/lib/*.{a}'
+  s.public_header_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/*.{h}'
+  s.frameworks = 'UIKit','AudioToolBox','CoreImage','CoreMedia','VideoToolBox','AVFoundation'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
