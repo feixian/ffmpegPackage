@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'ffmpegLib_Example' do
+  pod 'ffmpegLib', :path => '../'
+
+  target 'ffmpegLib_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
