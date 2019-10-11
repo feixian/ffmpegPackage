@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ffmpegLib'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'A short description of ffmpegLib.'
 
 # This description is used to generate tags and improve search results.
@@ -38,7 +38,8 @@ TODO: Add long description of the pod here.
   #   'ffmpegLib' => ['ffmpegLib/Assets/*.png']
   # }
   s.vendored_libraries =  'ffmpegLib/Classes/FFmpeg-iOS/lib/*.{a}'
-  s.public_header_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/*.{h}'
+  s.public_header_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/**/*.{h}'
   s.frameworks = 'UIKit','AudioToolBox','CoreImage','CoreMedia','VideoToolBox','AVFoundation'
   # s.dependency 'AFNetworking', '~> 2.3'
+  
 end
