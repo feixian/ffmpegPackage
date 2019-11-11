@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ffmpegLib'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'A short description of ffmpegLib.'
 
 # This description is used to generate tags and improve search results.
@@ -37,6 +37,19 @@ TODO: Add long description of the pod here.
   # s.resource_bundles = {
   #   'ffmpegLib' => ['ffmpegLib/Assets/*.png']
   # }
+  root_spec_path = 'ffmpegLib/Classes'
+  current_dir = File.realpath(File.dirname(__FILE__))
+  if File.file?(File.join(current_dir, "_DEV_ENV"))
+    s.source_files = 'ffmpegLib/Classes/**/*'
+    else
+    make_spec_path = File.join(current_dir, "_make_spec.rb")
+    File.open(make_spec_path) do |fp|
+      eval(fp.read)
+    end
+    root_path = File.join(current_dir, root_spec_path)
+    traverse(s, root_path, root_spec_path)
+  end
+  
   s.vendored_libraries =  'ffmpegLib/Classes/FFmpeg-iOS/lib/*.{a}'
   s.public_header_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/**/*.{h}'
   s.frameworks = 'UIKit','AudioToolBox','CoreImage','CoreMedia','VideoToolBox','AVFoundation'
