@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ffmpegLib'
-  s.version          = '0.1.3'
-  s.summary          = 'A short description of ffmpegLib.'
+  s.version          = '0.1.4'
+  s.summary          = 'A simplify iOS library of ffmpeg.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -30,28 +30,59 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/**/*.{h}'
+  #s.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/**/*.{h}'
   s.libraries = 'bz2', 'c++', 'z', 'iconv'
   #s.vendored_libraries =  'hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/ffmpeg/lib/*.{a}','hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/ffmpeg/x264/lib/*.{a}','hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/mp4v2/libmp4v2/lib/*.{a}','hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/TUTK/*.{a}','hlTUTKConnectSDK/Classes/HLCommunicationSDK/Library/AudioCodec/faac/*.{a}'
   
   # s.resource_bundles = {
   #   'ffmpegLib' => ['ffmpegLib/Assets/*.png']
   # }
-  root_spec_path = 'ffmpegLib/Classes'
-  current_dir = File.realpath(File.dirname(__FILE__))
-  if File.file?(File.join(current_dir, "_DEV_ENV"))
-    s.source_files = 'ffmpegLib/Classes/**/*'
-    else
-    make_spec_path = File.join(current_dir, "_make_spec.rb")
-    File.open(make_spec_path) do |fp|
-      eval(fp.read)
-    end
-    root_path = File.join(current_dir, root_spec_path)
-    traverse(s, root_path, root_spec_path)
-  end
   
-  s.vendored_libraries =  'ffmpegLib/Classes/FFmpeg-iOS/lib/*.{a}'
-  s.public_header_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/**/*.{h}'
+#  temp_path = 'ffmpegLib/Classes/'
+#  root_spec_path = 'ffmpegLib/Classes'
+#  current_dir = File.realpath(File.dirname(__FILE__))
+#  if File.file?(File.join(current_dir, "_DEV_ENV"))
+#    s.source_files = 'ffmpegLib/Classes/**/*'
+#    else
+#    make_spec_path = File.join(current_dir, "_make_spec.rb")
+#    File.open(make_spec_path) do |fp|
+#      eval(fp.read)
+#    end
+#    root_path = File.join(current_dir, root_spec_path)
+#    traverse(s, root_path, root_spec_path)
+#  end
+    s.subspec 'libavcodec' do |ss|
+        ss.source_files = 'ffmpegLib/Classes/include/libavcodec/*.{h}'
+    end
+
+    s.subspec 'libavdevice' do |ss|
+        ss.source_files = 'ffmpegLib/Classes/include/libavdevice/*.{h}'
+    end
+
+    s.subspec 'libavfilter' do |ss|
+        ss.source_files = 'ffmpegLib/Classes/include/libavfilter/*.{h}'
+    end
+    
+    s.subspec 'libavformat' do |ss|
+        ss.source_files = 'ffmpegLib/Classes/include/libavformat/*.{h}'
+    end
+    
+    s.subspec 'libavutil' do |ss|
+        ss.source_files = 'ffmpegLib/Classes/include/libavutil/*.{h}'
+    end
+    
+    s.subspec 'libswresample' do |ss|
+        ss.source_files = 'ffmpegLib/Classes/include/libswresample/*.{h}'
+    end
+    
+    s.subspec 'libswscale' do |ss|
+        ss.source_files = 'ffmpegLib/Classes/include/libswscale/*.{h}'
+    end
+
+
+
+  s.vendored_libraries =  'ffmpegLib/Classes/lib/*.{a}'
+  s.public_header_files = 'ffmpegLib/Classes/include/*.{h}'
   s.frameworks = 'UIKit','AudioToolBox','CoreImage','CoreMedia','VideoToolBox','AVFoundation'
   # s.dependency 'AFNetworking', '~> 2.3'
   
