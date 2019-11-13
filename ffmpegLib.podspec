@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ffmpegLib'
-  s.version          = '0.1.6'
+  s.version          = '0.1.4'
   s.summary          = 'A short description of ffmpegLib.'
 
 # This description is used to generate tags and improve search results.
@@ -69,8 +69,8 @@ TODO: Add long description of the pod here.
   s.vendored_libraries =  'ffmpegLib/Classes/FFmpeg-iOS/lib/*.{a}'
   s.public_header_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/**/*.{h}'
   s.pod_target_xcconfig = {
-      'LIBRARY_SEARCH_PATHS'   => '$(inherited)   $(PODS_TARGET_SRCROOT)/ffmpegLib/Classes/FFmpeg-iOS/lib',
-      'HEADER_SEARCH_PATHS'   => '$(inherited)   $(PODS_TARGET_SRCROOT)/ffmpegLib/Classes/FFmpeg-iOS/include $(PODS_TARGET_SRCROOT)/ffmpegLib/Classes/FFmpeg-iOS',
+      'LIBRARY_SEARCH_PATHS'   => '$(inherited)   $(PODS_CONFIGURATION_BUILD_DIR)/ffmpegLib/Classes/FFmpeg-iOS/lib',
+      'HEADER_SEARCH_PATHS'   => '$(inherited)   $(PODS_CONFIGURATION_BUILD_DIR)/ffmpegLib/Classes/FFmpeg-iOS/include $(PODS_CONFIGURATION_BUILD_DIR)/ffmpegLib/Classes/FFmpeg-iOS',
       'OTHER_LDFLAGS'            => '$(inherited) -undefined dynamic_lookup -ObjC',
       'ENABLE_BITCODE'           => 'NO'
   }
