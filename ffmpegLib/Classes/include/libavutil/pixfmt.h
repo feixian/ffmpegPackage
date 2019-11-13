@@ -26,7 +26,14 @@
  * pixel format definitions
  */
 
+#if COCOAPODS == 1
+#include "avconfig.h"
+
+#else
 #include "libavutil/avconfig.h"
+#end
+
+
 #include "version.h"
 
 #define AVPALETTE_SIZE 1024

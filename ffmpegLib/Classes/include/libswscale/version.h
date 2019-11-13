@@ -23,8 +23,11 @@
  * @file
  * swscale version macros
  */
-
+#if COCOAPODS == 1
+#include "version.h"
+#else
 #include "libavutil/version.h"
+#endif
 
 #define LIBSWSCALE_VERSION_MAJOR   5
 #define LIBSWSCALE_VERSION_MINOR   5
