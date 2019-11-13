@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ffmpegLib'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'A short description of ffmpegLib.'
 
 # This description is used to generate tags and improve search results.
@@ -37,21 +37,46 @@ TODO: Add long description of the pod here.
   # s.resource_bundles = {
   #   'ffmpegLib' => ['ffmpegLib/Assets/*.png']
   # }
-  root_spec_path = 'ffmpegLib/Classes'
-  current_dir = File.realpath(File.dirname(__FILE__))
-  if File.file?(File.join(current_dir, "_DEV_ENV"))
-    s.source_files = 'ffmpegLib/Classes/**/*'
-    else
-    make_spec_path = File.join(current_dir, "_make_spec.rb")
-    File.open(make_spec_path) do |fp|
-      eval(fp.read)
-    end
-    root_path = File.join(current_dir, root_spec_path)
-    traverse(s, root_path, root_spec_path)
+  
+  s.subspec 'libavcodec' do |ss|
+      ss.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/libavcodec/*.{h}'
+  end
+  
+  s.subspec 'libavdevice' do |ss|
+      ss.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/libavdevice/*.{h}'
+  end
+  
+  s.subspec 'libavfilter' do |ss|
+      ss.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/libavfilter/*.{h}'
+  end
+  
+  s.subspec 'libavformat' do |ss|
+      ss.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/libavformat/*.{h}'
+  end
+  
+  s.subspec 'libavutil' do |ss|
+      ss.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/libavutil/*.{h}'
+  end
+  
+  s.subspec 'libswresample' do |ss|
+      ss.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/libswresample/*.{h}'
+  end
+  
+  s.subspec 'libswscale' do |ss|
+      ss.source_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/libswscale/*.{h}'
   end
   
   s.vendored_libraries =  'ffmpegLib/Classes/FFmpeg-iOS/lib/*.{a}'
   s.public_header_files = 'ffmpegLib/Classes/FFmpeg-iOS/include/**/*.{h}'
+  s.pod_target_xcconfig = {
+      'LIBRARY_SEARCH_PATHS'   => '$(inherited)   $(PODS_TARGET_SRCROOT)/ffmpegLib/Classes/FFmpeg-iOS/lib',
+      'HEADER_SEARCH_PATHS'   => '$(inherited)   $(PODS_TARGET_SRCROOT)/ffmpegLib/Classes/FFmpeg-iOS/include $(PODS_TARGET_SRCROOT)/ffmpegLib/Classes/FFmpeg-iOS',
+      'OTHER_LDFLAGS'            => '$(inherited) -undefined dynamic_lookup -ObjC',
+      'ENABLE_BITCODE'           => 'NO'
+  }
+
+  
+  
   s.frameworks = 'UIKit','AudioToolBox','CoreImage','CoreMedia','VideoToolBox','AVFoundation'
   # s.dependency 'AFNetworking', '~> 2.3'
   
