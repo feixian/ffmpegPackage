@@ -29,11 +29,18 @@
 
 #include <stdint.h>
 
+#if COCOAPODS == 1
+#include "avutil.h"
+#include "log.h"
+#include "pixfmt.h"
+
+#else
 #include "libavutil/avutil.h"
 #include "libavutil/log.h"
 #include "libavutil/pixfmt.h"
-#include "version.h"
+#endif
 
+#include "version.h"
 /**
  * @defgroup libsws libswscale
  * Color conversion and scaling library.

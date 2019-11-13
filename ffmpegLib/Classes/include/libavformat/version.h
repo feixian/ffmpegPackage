@@ -26,8 +26,17 @@
  * @ingroup libavf
  * Libavformat version macros
  */
+#if COCOAPODS == 1
+
+#include "version.h"
+
+#else
 
 #include "libavutil/version.h"
+
+#endif
+
+
 
 // Major bumping may affect Ticket5467, 5421, 5451(compatibility with Chromium)
 // Also please add any ticket numbers that you believe might be affected here

@@ -42,7 +42,11 @@
 #include "attributes.h"
 #include "macros.h"
 #include "version.h"
+#if COCOAPODS == 1
+#include "avconfig.h"
+#else
 #include "libavutil/avconfig.h"
+#endif
 
 #if AV_HAVE_BIGENDIAN
 #   define AV_NE(be, le) (be)

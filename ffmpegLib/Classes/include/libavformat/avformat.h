@@ -314,12 +314,24 @@
 
 #include <time.h>
 #include <stdio.h>  /* FILE */
+
+#if COCOAPODS == 1
+#include "avcodec.h"
+#include "dict.h"
+#include "log.h"
+#include "version.h"
+
+#else
 #include "libavcodec/avcodec.h"
 #include "libavutil/dict.h"
 #include "libavutil/log.h"
+#include "libavformat/version.h"
+#endif
+
+
 
 #include "avio.h"
-#include "libavformat/version.h"
+
 
 struct AVFormatContext;
 

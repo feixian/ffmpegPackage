@@ -28,11 +28,18 @@
 
 #include <stdint.h>
 
-#include "libavutil/common.h"
-#include "libavutil/dict.h"
-#include "libavutil/log.h"
+#if COCOAPODS == 1
+    #include "avutil.h"
+    #include "log.h"
+    #include "pixfmt.h"
+    #include "version.h"
+#else
+    #include "libavutil/common.h"
+    #include "libavutil/dict.h"
+    #include "libavutil/log.h"
+    #include "libavformat/version.h"
+#endif
 
-#include "libavformat/version.h"
 
 /**
  * Seeking works like for a local file.
